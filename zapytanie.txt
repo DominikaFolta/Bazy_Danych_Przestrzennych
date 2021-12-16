@@ -1,0 +1,8 @@
+ 
+     alter table CUSTOMERS_401290 alter column lat type double precision using lat::double precision;
+    alter table CUSTOMERS_401290 alter column long type double precision using long::double precision;
+
+    SELECT first_name, last_name  INTO best_customers_400581 FROM customers_401290
+				WHERE ST_DistanceSpheroid( 
+			ST_Point(lat, long), ST_Point(41.39988501005976, -75.67329768604034),
+			'SPHEROID["WGS 84",6378137,298.257223563]') <= 50000
